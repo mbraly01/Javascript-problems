@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+<h1>Stock Comparison Tool</h1>
+<h2>enter two stock tickers and compare current prices</h2>
+<h3 id="price"></h3>
+<main>
+    <input type="text" id="input1" placeholder="enter stock"/>
+    <input type="text" id="input2" placeholder="enter stock"/>
+    <button id="button">Compare</button>
+    <script>
+        async function getStock(stock) {
+            response = await fetch(`https://cloud.iexapis.com/stable/stock/${stock}/quote?token=pk_208076e4d5044b66a8fca1b401621a7a`)
+            data = await response.json()
+
+            price.innerHTML += "<p class='inline'> " + data['iexRealtimePrice'] + " </p>"
+        }
+        button.addEventListener("click", (e)=> {
+            input1 = document.getElementById("input1").value;
+            input2 = document.getElementById("input2").value;
+            getStock(input1);
+            getStock(input2);
+        
+    });
+
+    </script>
+</main>
+<!-- <script src="stock.js"></script> -->
